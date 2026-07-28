@@ -5,7 +5,7 @@ operational managers instant, filterable visibility into revenue, overdue receiv
 store performance, and cash flow, without needing a dedicated ERP system. Built to solve 
 a real reporting gap at a multi-store retail business; automated with Google Apps Script 
 so it scales as the business grows. Try it yourself with the synthetic data generator — 
-**[Open the live template →]((https://docs.google.com/spreadsheets/d/1YYBE2KYu3kiaScHik_HveYuyL2x-1oX_r-fDtDRhDWw/edit?usp=sharing))**
+**[Open the live template →](YOUR_LINK_HERE)**
 
 *(Full write-up, screenshots, and honest limitations below ↓)*
 
@@ -50,7 +50,7 @@ after requesting a report and waiting.
 **Note:** All data here is synthetically generated. No real business or customer data is 
 used anywhere in this repository.
 
-1. **[Open the live template →]((https://docs.google.com/spreadsheets/d/1YYBE2KYu3kiaScHik_HveYuyL2x-1oX_r-fDtDRhDWw/edit?usp=sharing))**, then **File → Make a Copy**
+1. **[Open the live template →]([YOUR_LINK_HERE](https://docs.google.com/spreadsheets/d/1YYBE2KYu3kiaScHik_HveYuyL2x-1oX_r-fDtDRhDWw/edit?usp=sharing))**, then **File → Make a Copy**
 2. Go to **Data Generator** → click **Generate Data** (or leave fields blank for a random scenario)
 3. Go to **Dashboard**, set filters, click **Refresh All Charts**
 4. Drill into one store, one month, one payment type — watch everything narrow instantly
