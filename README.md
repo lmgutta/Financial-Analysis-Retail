@@ -1,12 +1,15 @@
 # Automated Financial Reporting System (Built in Google Sheets)
 
-A self-service financial analysis tool built entirely in Google Sheets — designed to give 
-operational managers the ability to dig into revenue, receivables, and cash flow at a level 
-of detail that used to take days or weeks to assemble manually, without needing a dedicated 
-ERP system.
+**TL;DR:** A self-service financial dashboard built entirely in Google Sheets — gives 
+operational managers instant, filterable visibility into revenue, overdue receivables, 
+store performance, and cash flow, without needing a dedicated ERP system. Built to solve 
+a real reporting gap at a multi-store retail business; automated with Google Apps Script 
+so it scales as the business grows. Try it yourself with the synthetic data generator — 
+**[Open the live template →]((https://docs.google.com/spreadsheets/d/1YYBE2KYu3kiaScHik_HveYuyL2x-1oX_r-fDtDRhDWw/edit?usp=sharing))**
 
-Built independently while identifying a reporting gap during an operations role at a 
-multi-store retail business.
+*(Full write-up, screenshots, and honest limitations below ↓)*
+
+---
 
 ## The Problem
 
@@ -14,106 +17,94 @@ The business operates across multiple retail locations, processing transactions 
 basic point-of-sale (POS) system. There was no central financial software, so any real 
 analysis — figuring out which customers were falling behind on payments, whether a store's 
 revenue was trending up or down, how payment collection was actually happening — required 
-manually cross-referencing raw data exports.
-
-This wasn't just slow. It meant operational managers were making decisions on stale, incomplete 
-information, and had no reliable way to check "where should our balances actually be at the 
-end of this cycle" without days of manual reconciliation first.
+manually cross-referencing raw data exports, often taking days.
 
 ## The Solution
 
-A six-module financial analysis system, built so a manager can filter down to exactly the 
-slice of the business they need to investigate — a single store, a specific month, one 
-payment type, or any combination — and get an immediate, reliable answer:
+Six focused modules, each filterable by store, month, year, and payment type:
 
-- **Financial Overview** — the starting point for any investigation: total revenue, cash 
-  collected, outstanding balances, and collection rate, filtered to whatever period or store 
-  a manager is reviewing
-- **Overdue Parties (Accounts Receivable)** — automatically ranks every customer with an 
-  outstanding balance, so collections effort goes to the highest-impact accounts first, 
-  instead of manually scanning transaction lists
-- **Store Trend Overview** — lets a manager check whether a location's revenue is on track, 
-  and compare that against prior months at a glance
-- **Store Performance** — shows exactly how each store is collecting payment, which matters 
-  for both fraud/risk monitoring and reconciliation effort
-- **Cash Flow & Banking Distribution** — answers "where did the money actually go this 
-  cycle" — cash in hand vs. bank vs. card settlements vs. still-outstanding credit — the 
-  exact reconciliation question finance teams ask at cycle-end
-- **Payment Type Overview** — surfaces shifts in how customers are choosing to pay, useful 
-  for spotting risk trends (e.g., rising reliance on credit) before they become a problem
+| Module | What It Answers |
+|---|---|
+| **Financial Overview** | Total revenue, cash collected, outstanding balance, collection rate |
+| **Overdue Parties (AR)** | Which customers owe money, ranked by amount, automatically |
+| **Store Trend Overview** | Is this location's revenue trending up or down over time |
+| **Store Performance** | How is each store actually collecting payment |
+| **Cash Flow & Banking** | Where the money physically landed — cash, bank, card, or still outstanding |
+| **Payment Type Overview** | How customer payment preferences are shifting over time |
 
-This is built for people who need to **dig in further than a summary number** — a manager 
-who sees an overdue total and needs to know exactly which accounts, which stores, which 
-months are driving it, and pull that detail themselves in seconds rather than requesting 
-it from someone else and waiting.
+Built for people who need to dig in past a summary number — a manager who sees an overdue 
+total and needs to know exactly which accounts and stores are driving it, in seconds, not 
+after requesting a report and waiting.
 
 ## Why This Matters Operationally
 
-- **Faster collections** — overdue accounts are surfaced and ranked automatically, so 
-  follow-up effort is prioritized correctly instead of discovered late
-- **Reliable cycle-end checks** — managers can verify where balances *should* be at the end 
-  of any reporting cycle, rather than reconciling manually after the fact
-- **Self-serve reporting** — internal reports that used to require a request-and-wait cycle 
-  (ask someone to pull the numbers, wait, get a static answer) can now be generated directly 
-  by whoever needs them, filtered exactly to their question
-- **Scales without breaking\*** — new stores, new months, and growing transaction volume are 
-  handled automatically; nothing needs to be manually rebuilt as the business grows
+- **Faster collections** — overdue accounts surfaced and ranked automatically
+- **Reliable cycle-end checks** — verify where balances *should* be at the end of any period
+- **Self-serve reporting** — no more request-and-wait cycles for internal numbers
+- **Scales without breaking\*** — new stores, months, and transactions handled automatically
 
-  \* *with a real limit — see "Limitations of This Demo" below*
-
-## How It Works (For the User)
-
-Using the system requires zero technical skill:
-
-1. **Paste the data** — drop the raw transaction export from the POS system into the data tab
-2. **Set the filters** — choose which stores, months, years, or payment types to investigate
-3. **Click Refresh** — the relevant charts and summaries rebuild instantly
+\* *see Limitations below — this comes with a real ceiling*
 
 ## Try It Yourself
 
-**Note:** All data in this demo is synthetically generated using the built-in Data Generator. 
-No real business or customer data is used or exposed anywhere in this repository.
+**Note:** All data here is synthetically generated. No real business or customer data is 
+used anywhere in this repository.
 
-**[Open the live template →](https://docs.google.com/spreadsheets/d/1YYBE2KYu3kiaScHik_HveYuyL2x-1oX_r-fDtDRhDWw/edit?usp=sharing)**
-
-1. Click **File → Make a Copy** to get your own editable version
-2. Go to the **Data Generator** sheet and click **Generate Data** — this builds a realistic, 
-   randomized business history (number of stores, operating history, and transaction volume 
-   are all configurable, or left random for a surprise scenario)
-3. Go to **Dashboard**, set any filters you like, and click **Refresh All Charts**
-4. Try drilling in — pick one store, one month, one payment type — and see how every view 
-   narrows down to exactly that slice
-
-## Limitations of This Demo
-
-This published version is deliberately modified to showcase the tool's capabilities using 
-synthetic data, and comes with a few honest caveats:
-
-- **Unrealistic extremes are possible.** If you generate an extreme scenario — say, 100 
-  stores and 10 years of history — the Overdue Parties list could balloon into the thousands, 
-  something that wouldn't realistically happen in a real business (real operations would 
-  catch and address overdue accounts long before they accumulated at that scale). The 
-  generator prioritizes flexibility for demonstration purposes over realistic business behavior 
-  at extreme settings.
-- **Generate-only, not append.** This demo version only supports *generating* a fresh synthetic 
-  dataset from scratch. The original, real-world version of this tool supports incrementally 
-  *adding* new transaction data over time (via a POS paste-and-append workflow) — that 
-  functionality isn't included here, since it's not needed for a self-contained demo.
-- **"Scales without breaking" has a ceiling.** This tool is genuinely built to handle growth — 
-  new stores, more months, more transactions — without manual rework. But it is still a 
-  spreadsheet-based system, and it is not a substitute for a proper, fully connected ERP 
-  platform. It's designed as a *bridge*, not a permanent replacement — every organization 
-  using something like this will eventually outgrow it and need real ERP infrastructure.
-
-## The Bigger Picture
-
-This was built with a "bridge tool" philosophy: give operational managers a real analytical 
-tool *today*, without waiting on ERP budget or implementation timelines, while keeping the 
-underlying structure clean enough to migrate into a full ERP system later without starting over.
+1. **[Open the live template →]((https://docs.google.com/spreadsheets/d/1YYBE2KYu3kiaScHik_HveYuyL2x-1oX_r-fDtDRhDWw/edit?usp=sharing))**, then **File → Make a Copy**
+2. Go to **Data Generator** → click **Generate Data** (or leave fields blank for a random scenario)
+3. Go to **Dashboard**, set filters, click **Refresh All Charts**
+4. Drill into one store, one month, one payment type — watch everything narrow instantly
 
 ## Screenshots
 
-*(Add screenshots of the filter panel, the Overdue Parties ranking, and a drill-down example here)*
+<img width="1214" height="768" alt="image" src="https://github.com/user-attachments/assets/cac7799c-3c35-43b8-a4c8-bd6005d5b047" />
+<img width="1212" height="772" alt="image" src="https://github.com/user-attachments/assets/d19123ed-dd37-467f-a81e-bb9be6febdbd" />
+<img width="1208" height="748" alt="image" src="https://github.com/user-attachments/assets/87a39598-21ae-4e5f-9f87-80bb78b9083b" />
+<img width="1208" height="756" alt="image" src="https://github.com/user-attachments/assets/00706cf1-f2b6-4b1f-a9b4-87007a926259" />
+<img width="2404" height="654" alt="image" src="https://github.com/user-attachments/assets/550c469d-a7ac-4454-88e8-485f93cb7fcc" />
+<img width="1204" height="752" alt="image" src="https://github.com/user-attachments/assets/9d000425-b659-4ae3-9c4f-40d9ca7d84b0" />
+
+---
+
+## Full Write-Up
+
+Built independently while identifying a reporting gap during an operations role at a 
+multi-store retail business.
+
+Traditional spreadsheets are fragile — a deleted row, an added column, or a new store 
+opening would normally break formulas and charts, requiring hours of manual fixing. This 
+tool was engineered to avoid that: every formula reads columns by name rather than position, 
+and every chart rebuilds itself on demand via automation, so growth doesn't require rework.
+
+### How It Works (For the User)
+
+1. **Paste the data** — drop the raw POS export into the data tab
+2. **Set the filters** — store, month, year, or payment type
+3. **Click Refresh** — everything rebuilds instantly
+
+### Limitations of This Demo
+
+This published version is deliberately modified to showcase capabilities using synthetic 
+data, with a few honest caveats:
+
+- **Unrealistic extremes are possible.** Generating an extreme scenario (e.g., 100 stores, 
+  10 years of history) could produce an Overdue Parties list in the thousands — something 
+  that wouldn't happen in a real business, where overdue accounts would be caught and 
+  addressed long before reaching that scale.
+- **Generate-only, not append.** This demo only generates a fresh synthetic dataset from 
+  scratch. The original real-world version supports incrementally *adding* new transactions 
+  over time via a POS paste-and-append workflow — not included here, since it's unnecessary 
+  for a self-contained demo.
+- **"Scales without breaking" has a ceiling.** This is genuinely built to handle growth 
+  without manual rework, but it's still a spreadsheet-based system — not a substitute for a 
+  fully connected ERP platform. It's a bridge, not a permanent replacement; any organization 
+  using something like this will eventually need real ERP infrastructure.
+
+### The Bigger Picture
+
+Built with a "bridge tool" philosophy: give operational managers a real analytical tool 
+*today*, without waiting on ERP budget or implementation timelines, while keeping the 
+structure clean enough to migrate into a full ERP system later without starting over.
 
 ---
 
