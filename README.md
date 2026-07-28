@@ -5,7 +5,7 @@ operational managers instant, filterable visibility into revenue, overdue receiv
 store performance, and cash flow, without needing a dedicated ERP system. Built to solve 
 a real reporting gap at a multi-store retail business; automated with Google Apps Script 
 so it scales as the business grows. Try it yourself with the synthetic data generator — 
-**[Open the live template →](YOUR_LINK_HERE)**
+**[Open the live template →](https://docs.google.com/spreadsheets/d/1YYBE2KYu3kiaScHik_HveYuyL2x-1oX_r-fDtDRhDWw/edit?usp=sharing)**
 
 *(Full write-up, screenshots, and honest limitations below ↓)*
 
