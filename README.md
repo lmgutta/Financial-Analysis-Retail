@@ -1,50 +1,41 @@
-# Automated Financial Reporting System (Built in Google Sheets)
+# Financial Reporting & Process Automation System
 
-**TL;DR:** A self-service financial dashboard built entirely in Google Sheets — gives 
-operational managers instant, filterable visibility into revenue, overdue receivables, 
-store performance, and cash flow, without needing a dedicated ERP system. Built to solve 
-a real reporting gap at a multi-store retail business; automated with Google Apps Script 
-so it scales as the business grows. Try it yourself with the synthetic data generator — 
+Built in Google Sheets & Google Apps Script
+
+**TL;DR:** A self-service financial and operational reporting system built in Google Sheets and automated with Google Apps Script. It gives operational managers instant, filterable visibility into revenue, overdue receivables, store performance, and cash flow, replacing manual cross-referencing of POS exports with a repeatable reporting workflow. Built to solve a real reporting gap at a multi-store retail business; published here with synthetic data. Try it yourself with the synthetic data generator — 
 **[Open the live template →](https://docs.google.com/spreadsheets/d/1YYBE2KYu3kiaScHik_HveYuyL2x-1oX_r-fDtDRhDWw/edit?usp=sharing)**
 
 *(Full write-up, screenshots, and honest limitations below ↓)*
 
 ---
 
-## The Problem
+The Problem
 
-The business operates across multiple retail locations, processing transactions through a 
-basic point-of-sale (POS) system. There was no central financial software, so any real 
-analysis — figuring out which customers were falling behind on payments, whether a store's 
-revenue was trending up or down, how payment collection was actually happening — required 
-manually cross-referencing raw data exports, often taking days.
+The business operates across multiple retail locations, processing transactions through a basic point-of-sale (POS) system. There was no central financial software, so any real analysis — figuring out which customers were falling behind on payments, whether a store's revenue was trending up or down, how payment collection was actually happening — required manually cross-referencing raw data exports, often taking days.
 
-## The Solution
+The Solution: From Manual Reporting to Self-Service Process
+
+The system converts raw POS transaction data into a structured reporting workflow, combining automated data processing, filtering, exception identification, and management dashboards.
 
 Six focused modules, each filterable by store, month, year, and payment type:
 
-| Module | What It Answers |
-|---|---|
-| **Financial Overview** | Total revenue, cash collected, outstanding balance, collection rate |
-| **Overdue Parties (AR)** | Which customers owe money, ranked by amount, automatically |
-| **Store Trend Overview** | Is this location's revenue trending up or down over time |
-| **Store Performance** | How is each store actually collecting payment |
-| **Cash Flow & Banking** | Where the money physically landed — cash, bank, card, or still outstanding |
-| **Payment Type Overview** | How customer payment preferences are shifting over time |
+Module	What It Answers
+Financial Overview	Total revenue, cash collected, outstanding balance, collection rate
+Overdue Parties (AR)	Which customers owe money, ranked by amount, automatically
+Store Trend Overview	Is this location's revenue trending up or down over time
+Store Performance	How is each store actually collecting payment
+Cash Flow & Banking	Where the money physically landed — cash, bank, card, or still outstanding
+Payment Type Overview	How customer payment preferences are shifting over time
 
-Built for people who need to dig in past a summary number — a manager who sees an overdue 
-total and needs to know exactly which accounts and stores are driving it, in seconds, not 
-after requesting a report and waiting.
+Built for people who need to dig in past a summary number — a manager who sees an overdue total and needs to know exactly which accounts and stores are driving it, in seconds, not after requesting a report and waiting.
 
-## Why This Matters Operationally
+Operational Impact
+Faster collections — overdue accounts surfaced and ranked automatically
+Reliable cycle-end checks — verify where balances should be at the end of any period
+Self-serve reporting — no more request-and-wait cycles for internal numbers
+Scales without breaking* — new stores, months, and transactions handled automatically
 
-- **Faster collections** — overdue accounts surfaced and ranked automatically
-- **Reliable cycle-end checks** — verify where balances *should* be at the end of any period
-- **Self-serve reporting** — no more request-and-wait cycles for internal numbers
-- **Scales without breaking\*** — new stores, months, and transactions handled automatically
-
-\* *see Limitations below — this comes with a real ceiling*
-
+* see Limitations below — this comes with a real ceiling
 ## Try It Yourself
 
 **Note:** All data here is synthetically generated. No real business or customer data is 
@@ -66,46 +57,29 @@ used anywhere in this repository.
 
 ---
 
-## Full Write-Up
+Full Write-Up
 
-Built independently while identifying a reporting gap during an operations role at a 
-multi-store retail business.
+Built independently while identifying a reporting gap during an operations role at a multi-store retail business.
 
-Traditional spreadsheets are fragile — a deleted row, an added column, or a new store 
-opening would normally break formulas and charts, requiring hours of manual fixing. This 
-tool was engineered to avoid that: every formula reads columns by name rather than position, 
-and every chart rebuilds itself on demand via automation, so growth doesn't require rework.
+Traditional spreadsheets are fragile — a deleted row, an added column, or a new store opening would normally break formulas and charts, requiring hours of manual fixing. This tool was engineered to avoid that: every formula reads columns by name rather than position, and every chart rebuilds itself on demand via automation, so growth doesn't require rework.
 
-### How It Works (For the User)
+Process Flow
 
-1. **Paste the data** — drop the raw POS export into the data tab
-2. **Set the filters** — store, month, year, or payment type
-3. **Click Refresh** — everything rebuilds instantly
+POS export → Data processing → Validation → Filters → Automated reporting → Management analysis
 
-### Limitations of This Demo
+How It Works (For the User)
+Paste the data — drop the raw POS export into the data tab
+Set the filters — store, month, year, or payment type
+Click Refresh — everything rebuilds instantly
+Limitations of This Demo
 
-This published version is deliberately modified to showcase capabilities using synthetic 
-data, with a few honest caveats:
+This published version is deliberately modified to showcase capabilities using synthetic data, with a few honest caveats:
 
-- **Unrealistic extremes are possible.** Generating an extreme scenario (e.g., 100 stores, 
-  10 years of history) could produce an Overdue Parties list in the thousands — something 
-  that wouldn't happen in a real business, where overdue accounts would be caught and 
-  addressed long before reaching that scale.
-- **Generate-only, not append.** This demo only generates a fresh synthetic dataset from 
-  scratch. The original real-world version supports incrementally *adding* new transactions 
-  over time via a POS paste-and-append workflow — not included here, since it's unnecessary 
-  for a self-contained demo.
-- **"Scales without breaking" has a ceiling.** This is genuinely built to handle growth 
-  without manual rework, but it's still a spreadsheet-based system — not a substitute for a 
-  fully connected ERP platform. It's a bridge, not a permanent replacement; any organization 
-  using something like this will eventually need real ERP infrastructure.
+Unrealistic extremes are possible. Generating an extreme scenario (e.g., 100 stores, 10 years of history) could produce an Overdue Parties list in the thousands — something that wouldn't happen in a real business, where overdue accounts would be caught and addressed long before reaching that scale.
+Generate-only, not append. This demo only generates a fresh synthetic dataset from scratch. The original real-world version supports incrementally adding new transactions over time via a POS paste-and-append workflow — not included here, since it's unnecessary for a self-contained demo.
+"Scales without breaking" has a ceiling. This is genuinely built to handle growth without manual rework, but it's still a spreadsheet-based system — not a substitute for a fully connected ERP platform. It's a bridge, not a permanent replacement; any organization using something like this will eventually need real ERP infrastructure.
+The Bigger Picture
 
-### The Bigger Picture
+Built with a "bridge tool" philosophy: give operational managers a real analytical tool today, without waiting on ERP budget or implementation timelines, while keeping the structure clean enough to migrate into a full ERP system later without starting over.
 
-Built with a "bridge tool" philosophy: give operational managers a real analytical tool 
-*today*, without waiting on ERP budget or implementation timelines, while keeping the 
-structure clean enough to migrate into a full ERP system later without starting over.
-
----
-
-Built using Google Sheets, Google Apps Script, and AI-assisted development.
+Built using Google Sheets and Google Apps Script, with AI-assisted development.
